@@ -1,25 +1,34 @@
-Local research proof audit | 28 November 2026 (Melbourne)
+Local proof audit | 28 November 2026 (Melbourne)
 Lean (version 4.19.0, arm64-apple-darwin23.6.0, commit 6caaee842e94, Release)
-Fresh project directory with shared external dependencies. All eight local modules compiled.
+Clean build: 12 project modules, pinned external dependencies.
 Commands: lake build; lake env lean -DwarningAsError=true Nonoverlap.lean
 
 'SixPattern.finite_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
-'NonoverlapThreshold.Lower.every_length' depends on axioms: [propext, Classical.choice, Quot.sound]
-'NonoverlapThreshold.Interior.diagonal_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Nonoverlap.Upper.exists_better_split' depends on axioms: [propext, Classical.choice, Quot.sound]
 'NonoverlapFive.five_partition_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
-'NonoverlapFive.exceptional_alphabets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapThreshold.Interior.diagonal_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Nonoverlap.Analytic.lower_grid_better' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapThreshold.Lower.every_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nonoverlap.Upper.exists_better_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapThreshold.WordLower.quadratic_word_counterexamples' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Nonoverlap.Bridge.moderate_excluded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nonoverlap.Bridge.moderate_excluded_of_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapFive.exceptional_alphabets' depends on axioms: [propext, Classical.choice, Quot.sound]
 
 SHA-256 of build inputs
-e1803e737f93654f4f84210209645aecec369c193dc543771b9f8d9742a66990  Analytic.lean
+48401acde617ff31a9e7a9011c75cdf00e38cce2083552aac89d804f14b1c8c1  Analytic.lean
 c5d8a4472e14e751d82f56781172c6bd523925c932d8024f27bc1e2a93944dd1  ExplicitSix.lean
-d1784796325fb564d0d898c692ff119b28dde53974f8e28687c5c41a0b82d755  Interior.lean
+9bd0a03bbbbecaab6523ba247ee1a46b3c4d10253ffe8fde4e2b9bf3be1b2910  Interior.lean
+33e5e9b17a12f9d88171eed8d41d7de19bfc466ef484bda2ddbea611d8891eb1  LayerData.lean
 bf6dc1f0dc55942d165fbb7c558c50e290fa94b52cc88fe0dd721c5e50dc65e5  LengthFive.lean
 eb65ac4bdfba5c5b31f6808e1ef41148cf3acb8f3c95e28d8cd41ce60766999d  Lower.lean
-c5d7ac82d170b64d74fd4ebfa269b054bb0626599ce7dee2b0cfd0f6686982d6  Nonoverlap.lean
+d2dcd0b61b994319d669673760b8ab6e32d58b222373a30eb43eb7b9751e934c  Nonoverlap.lean
+b7df05d05b6b87198eb55ec4e4359d7efb19177a144bec0c0c3c9e26fec82da1  RootIdentity.lean
 7b3cbe716233d6246e6fcf8895f7f922f152007c626b5d988f37e35cbb7b5e71  SixCount.lean
 ad36b37bedc58784399a155cbea48e57f2520a1b2e7bc0d8dc983018e1e511a0  Upper.lean
-55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea  lean-toolchain
-d8396f636710def774e8b22e03a2299d470526976a4ef98e724dc1ba216ad06c  lakefile.toml
+90d90dc1532d0d8ff6b7ac583a7cf8c7fe29a44eb76944e650c962dddc4758d9  UpperBridge.lean
+c1be443fe1b2045ab8e64bb97a0ea2258b3f1d58eeb5da9ddbf45ee4f09938d6  WordLower.lean
 9ec7a46fdfd568131a698b857ed2d45e71acfcf78ce86a7cd8946a6afcc0fb4d  lake-manifest.json
+9dae120fff0e9d383ed4626cf7091a9972d4575c8d5cfb205ddaef964b32d120  lakefile.toml
+55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea  lean-toolchain

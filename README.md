@@ -7,11 +7,11 @@ A non-overlapping code (also called a *cross-bifix-free code*) has no nonempty p
 
 ## Results
 
-* **Quadratic threshold.** For word length $n$, let $q_0(n)$ be the least alphabet size from which every larger alphabet, including that size, admits an optimal Blackburn split. We prove $q_0(n)=\Theta(n^2)$. The upper bound is $4n(n-1)$ for $n\ge3$, and explicit codes give $\liminf q_0(n)/n^2\ge 1/2$.
+* **Sharp threshold.** Let $q_0(n)$ be the least alphabet size from which an optimal Blackburn split exists for every larger alphabet, including that size. Our main theorem is $q_0(n)=n^2/2+O(n)$. In particular the limiting ratio is exactly $1/2$. We also prove $q_0(n)\le4n(n-1)$ for every $n\ge3$ and construct exceptional alphabets for every $n\ge12$.
 * **A counterexample to Conjecture 1 of Stanovnik, Moškon and Mraz.** On nine letters we give a non-overlapping code of length six with **33,851** codewords. All Blackburn splits have at most **33,614**. By Remark 3 of the original article, this disproves its proposed structural conjecture. The finite counterexample, including its size and every possible overlap, is verified in [Lean](SixCount.lean).
 * **Exact threshold at length five.** The optimal size on two and three letters is 2 and 17, respectively. Blackburn's best split is optimal for every alphabet of size at least four.
 
-[Research note in Chinese / 中文研究笔记](RESEARCH.md) · [Verification report](VERIFICATION.txt) · [Prior work and search record](PRIORITY.md)
+[Paper (PDF)](manuscript.pdf) · [LaTeX source](manuscript.tex) · [Research note in Chinese / 中文研究笔记](RESEARCH.md) · [Verification report](VERIFICATION.txt) · [Prior work and search record](PRIORITY.md)
 
 ## Verify the proofs
 
@@ -23,7 +23,7 @@ lake build
 lake env lean -DwarningAsError=true Nonoverlap.lean
 ```
 
-[SixCount.lean](SixCount.lean) and [ExplicitSix.lean](ExplicitSix.lean) formalize the finite counterexample as a set of actual nine-letter words. [LengthFive.lean](LengthFive.lean) solves the integer partition optimization. The analytic, upper-bound and lower-bound modules verify the indicated estimates for the general threshold. The research note states the published representation theorem and explains how those estimates apply to arbitrary maximum codes.
+[SixCount.lean](SixCount.lean) verifies the 33,851-word counterexample. [WordLower.lean](WordLower.lean) constructs genuine non-overlapping word sets at every length $n\ge12$ and compares them with every integer split. [LengthFive.lean](LengthFive.lean) solves the length-five integer partition problem. The [verification report](VERIFICATION.txt) records the declarations actually checked. The manuscript gives the general proof, including the asymptotic analysis, and identifies the structural results it uses from earlier work.
 
 ## Related work
 

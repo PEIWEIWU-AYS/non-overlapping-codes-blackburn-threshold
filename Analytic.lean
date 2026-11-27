@@ -21,7 +21,7 @@ private lemma peak_mem (k : ℕ) : peak k ∈ Set.Icc 0 1 := by
   · unfold peak; positivity
   · unfold peak; apply (div_le_iff₀ (by positivity)).2; linarith
 
-private lemma hder (k : ℕ) (x : ℝ) :
+lemma hder (k : ℕ) (x : ℝ) :
     HasDerivAt (score k) (((k:ℝ)+2)*(peak k-x)*x^k) x := by
   have h := ((hasDerivAt_id x).pow (k+1)).mul ((hasDerivAt_const x (1:ℝ)).sub (hasDerivAt_id x))
   convert h using 1

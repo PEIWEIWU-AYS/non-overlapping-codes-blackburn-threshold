@@ -2,7 +2,7 @@
   "title": "A quadratic alphabet threshold for non-overlapping codes",
   "upload_type": "publication",
   "publication_type": "preprint",
-  "description": "<p>For non-overlapping (cross-bifix-free) codes of length n, the least alphabet threshold beyond which Blackburn’s construction is always optimal grows quadratically in n. We give explicit upper and lower bounds, determine the threshold at length five, and disprove Conjecture 1 of Stanovnik, Moškon and Mraz. On nine letters our length-six code has 33,851 words; the best Blackburn split has 33,614. This release contains the preprint, the Lean 4 project and verification instructions.</p>",
+  "description": "<p>For length-n non-overlapping (cross-bifix-free) codes, let q₀(n) be the least alphabet size beyond which a Blackburn split is always maximum. We prove q₀(n) = n²/2 + O(n), with q₀(n) ≤ 4n(n−1) for n ≥ 3. A family of non-overlapping codes yields exceptional alphabets for every n ≥ 12. A length-six code on nine symbols has 33,851 words, while the best Blackburn split has 33,614, disproving Conjecture 1 of Stanovnik, Moškon and Mraz. We also determine the maximum for all alphabets at length five. The archive includes the research preprint, its LaTeX source, formal proofs in Lean 4, and a verification report.</p>",
   "creators": [
     {
       "name": "Wu, Peiwei",

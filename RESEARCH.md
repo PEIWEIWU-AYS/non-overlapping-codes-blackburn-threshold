@@ -15,7 +15,7 @@ $$
  q_0(n)\le 4n(n-1)\quad(n\ge3),\qquad
  q_0(n)>n(\lfloor n/2\rfloor-2)+\lceil n/2\rceil\quad(n\ge12).
 $$
-因此 $q_0(n)=\Theta(n^2)$，且 $\liminf q_0(n)/n^2\ge1/2$。长度五的整数优化还能精确求解，$S_5(2)=2$、$S_5(3)=17$，其余 $q\ge4$ 均为 $B_5(q)$，故 $q_0(5)=4$。前两个单点数值在以往计算范围内。逐长度的精确阈值和最优渐近常数仍然需要进一步研究。[Stanovnik、Moškon 和 Mraz](https://doi.org/10.1007/s10623-023-01344-z)
+进一步有 $q_0(n)=n^2/2+O(n)$，所以阈值比 $q_0(n)/n^2$ 的极限是 $1/2$。长度五的整数优化还能精确求解，$S_5(2)=2$、$S_5(3)=17$，其余 $q\ge4$ 均为 $B_5(q)$，故 $q_0(5)=4$。前两个单点数值在以往计算范围内。各个长度的精确阈值及全部例外参数仍待确定。[Stanovnik、Moškon 和 Mraz](https://doi.org/10.1007/s10623-023-01344-z)
 
 ## 直接反证一个已发表的猜想
 
@@ -54,6 +54,10 @@ $$
 $$
 $q\ge4n(n-1)$ 时后一个数严格小于前一个下界。Blackburn 构造自身达到 $\beta(s/q)$，排除了适中的最大码，得证。
 
+## 首项常数与线性误差
+
+记 $F$ 为第 $n$ 层所有两个指标均至少是 2 的卷积之和。保留每一支的首层系数，上述尾项计数给出 $D\ge abF/8$。对 $q\ge n^2/2$ 的潜在例外，最近整数分割使 $\beta(c)-M=O(n^{-3})$，而 $ab\ge1/[2(n-1)]$，因此 $F=O(n^{-2})$。选择反转方向，使 $r_{n-1}\ge M-F$。在峰值附近令 $u=n^2(c-t)$，$P=c^{n-2}$。导数估计给出 $|u|\le3$，且在所用的 $O(n^{-2})$ 邻域内，幂函数与 $P$ 的差为 $O(1/n)$。于是 $n^3(\beta(c)-M)/P$ 至少是 $u^2/2+1-u-O(1/n)\ge1/2-O(1/n)$。最近整数分割给出的上界为 $n^4(1+O(1/n))/(8q^2)$，故例外只能出现在 $q\le n^2/2+O(n)$。结合下面的逐长度下界即得首项和线性误差。[论文第四节](manuscript.pdf)
+
 ## 下界
 
 对每个 $n\ge12$，取 $k=\lfloor n/2\rfloor-2$，$r=\lceil n/2\rceil$，$q=nk+r$，$b=k+1$，$a=q-b$。此节的参数均为未归一化整数。此时 $(n-1)b-q=1$ 且 $a>n-2$。函数 $s^{n-1}(q-s)$ 的峰值位于 $qc$。峰值左右最接近的两个整数为 $a,a+1$，$qc-a=1-r/n\le1/2$。导数为 $ns^{n-2}(qc-s)$。从峰值向两侧取相同距离，右边的导数绝对值较大，故 $a$ 实现 $B_n(q)$。
@@ -76,9 +80,6 @@ $a\ge3b$ 时，两者至多为 $a^4b$。$b\le a\le3b$ 时，两者至多为 $81q
 
 ## 形式化范围
 
-[LengthFive.lean](LengthFive.lean) 的结论针对整数分层递推；[Interior.lean](Interior.lean) 给出内部对角线的尾项计数。[Analytic.lean](Analytic.lean)、[Lower.lean](Lower.lean) 和 [Upper.lean](Upper.lean) 分别对应标量估计、下界构造和上界比较。分层表示覆盖所有最大码的定理、根恒等式及倾斜情形使用前述文献。完整研究判断应把这些引用与本地 Lean 定理的假设一起阅读。
+[WordLower.lean](WordLower.lean) 对每个 $n\ge12$ 构造一个实际的有限词集，证明它没有重叠、计算其大小，并严格比较所有整数分割。[SixCount.lean](SixCount.lean) 给出九个字母、六位码字反例的精确基数。[LengthFive.lean](LengthFive.lean) 解决长度五的整数分层优化问题。根恒等式和有限上界的分层推导见 [RootIdentity.lean](RootIdentity.lean)。定理的正式名称、编译环境和文件哈希见[本版验证记录](VERIFICATION.txt)。完整数学论证见[英文论文](manuscript.pdf)。
 
-
-2026 年 11 月 28 日，用固定的 Lean 4.19.0 在干净目录重建了八份源码。入口文件检查了七项主要声明。[验证记录](VERIFICATION.txt) 中列出了公理与输入文件散列。九字母、六位的反例在 Lean 中表述为一个实际的有限词集，其精确基数、对任意分割的严格不等式和所有真前后缀的排斥均直接在内核中检查。二次阶结论的机器验证覆盖若干组成引理；从任意最大码的分层到三个误差分支、文献定理与最终量词的串联，仍使用上面的书面证明。
-
-复现时从本目录运行 `lake exe cache get`、`lake build` 与 `lake env lean -DwarningAsError=true Nonoverlap.lean`。公开先行工作与查重范围见 [PRIORITY.md](PRIORITY.md)。
+从本目录运行 `lake exe cache get`、`lake build` 与 `lake env lean -DwarningAsError=true Nonoverlap.lean` 即可复核。查重范围见[先行工作对照](PRIORITY.md)。

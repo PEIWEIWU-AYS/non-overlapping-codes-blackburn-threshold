@@ -76,8 +76,8 @@ private theorem peak_lower (k : ℕ) :
   field_simp
 
 /-- A permissible integer alphabet split realizes the quadratic rounding loss. -/
-theorem nearest_split (k q : ℕ) (hq : 2*(k+2) ≤ q) :
-    ∃ s : ℕ, 0 < s ∧ s < q ∧
+theorem nearest_split_with_distance (k q : ℕ) (hq : 2*(k+2) ≤ q) :
+    ∃ s : ℕ, 0 < s ∧ s < q ∧ |(s:ℝ)/q-peak k| ≤ 1/(2*q) ∧
       score k (peak k)-score k ((s:ℝ)/q) ≤ ((k:ℝ)+2)/(8*(q:ℝ)^2) := by
   let p := peak k
   have hd : 0 < (k:ℝ)+2 := by positivity
@@ -115,6 +115,7 @@ theorem nearest_split (k q : ℕ) (hq : 2*(k+2) ≤ q) :
     · rw [show 1/(2*(q:ℝ)) = (1/2)/q by ring,sub_le_iff_le_add,
           show (1/2:ℝ)/q + p = ((1/2)+(q:ℝ)*p)/q by field_simp; ring,div_le_div_iff_of_pos_right hqpos]
       linarith
+  refine ⟨hdif, ?_⟩
   have hsquare := pow_le_pow_left₀ (abs_nonneg _) hdif 2
   rw [sq_abs] at hsquare
   calc
@@ -124,6 +125,12 @@ theorem nearest_split (k q : ℕ) (hq : 2*(k+2) ≤ q) :
       field_simp [ne_of_gt hqpos]
       ring_nf
       simp
+
+theorem nearest_split (k q : ℕ) (hq : 2*(k+2) ≤ q) :
+    ∃ s : ℕ, 0 < s ∧ s < q ∧
+      score k (peak k)-score k ((s:ℝ)/q) ≤ ((k:ℝ)+2)/(8*(q:ℝ)^2) := by
+  obtain ⟨s,hs,hq',_,hloss⟩ := nearest_split_with_distance k q hq
+  exact ⟨s,hs,hq',hloss⟩
 
 /-- If a moderate code has one of the three structural certificates, it falls
 strictly below the rounded grid score whenever q ≥ 4 n(n-1), with n=k+2.

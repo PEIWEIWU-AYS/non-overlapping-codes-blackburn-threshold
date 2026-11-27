@@ -1,0 +1,233 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\floor}[1]{\lfloor #1\rfloor}
+\newcommand{\ceil}[1]{\lceil #1\rceil}
+\hypersetup{pdftitle={A quadratic alphabet threshold for non-overlapping codes},pdfauthor={Peiwei Wu and Qian Peng}}
+\title{A quadratic alphabet threshold for non-overlapping codes}
+\author{Peiwei Wu$^{1}$ \qquad Qian Peng$^{2,*}$\\[0.5ex]
+\small $^{1}$Shandong Medical and Pharmaceutical University\\
+\small (formerly Binzhou Medical University)\\
+\small $^{2}$The University of Melbourne\\
+\small $^{*}$Corresponding author}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $q_0(n)$ be the least integer such that every alphabet of size $q\ge q_0(n)$ admits a partition $I\sqcup J$ for which $I^{n-1}J$ is a maximum non-overlapping code of length $n$. Chee proved that $q_0(n)$ exists. We prove $q_0(n)=n^2/2+O(n)$ and the finite bound $q_0(n)\le4n(n-1)$. The upper bound compares a uniform loss in the real partition relaxation with the cost of rounding a single alphabet split. For the lower bound, moving one two-letter word between parts produces an infinite family of exceptions. At length six over nine symbols this construction gives $33{,}851$ words, exceeding the best partition of the form $I^5J$ by 237 and disproving a conjecture of Stanovnik, Mo\v{s}kon and Mraz. We also determine the maximum for every alphabet size at length five.
+\end{abstract}
+
+\section{The alphabet threshold}
+
+A code $C\subseteq\Sigma^n$ is \emph{non-overlapping} if a nonempty proper prefix of a word in $C$ never equals a suffix of another word in $C$ or of the same word. Let $S_n(q)$ denote the largest size of such a code when $|\Sigma|=q$. For any partition $\Sigma=I\sqcup J$ into nonempty parts, $I^{n-1}J$ is non-overlapping. The best size given by these Blackburn codes is
+\[
+ B_n(q)=\max_{1\le s<q}s^{n-1}(q-s).
+\]
+Blackburn conjectured that $S_n(q)=B_n(q)$ for each fixed $n\ge2$ and all sufficiently large $q$~\cite{Blackburn}. Chee proved this conjecture and asked for the least integer $q_0(n)\ge2$ such that equality holds for every $q\ge q_0(n)$~\cite[Theorem~I.1 and Section~IV]{Chee}.
+
+\begin{theorem}\label{th:threshold}
+For all $n\ge3$, $q_0(n)\le 4n(n-1)$. For every $n\ge12$,
+\[
+ q_0(n)>n\bigl(\floor{n/2}-2\bigr)+\ceil{n/2}.
+\]
+As $n\to\infty$, one has $q_0(n)=n^2/2+O(n)$.
+\end{theorem}
+
+Stanovnik, Mo\v{s}kon and Mraz conjectured that some maximum partition code has $R_i=\varnothing$ for all $i>1+n/(q+1)$, in the notation of~\eqref{eq:levels}. For $q\ge n$ this forces every right part above the first level to be empty and gives $S_n(q)=B_n(q)$~\cite[Conjecture~1 and Remark~3]{SMM}. An example of length six already contradicts that prediction.
+
+\begin{proposition}\label{p:six}
+There is a non-overlapping code of length six over nine symbols with $33{,}851$ words. In particular, $S_6(9)>B_6(9)=33{,}614$.
+\end{proposition}
+\begin{proof}
+Take $I=\{0,\ldots,6\}$ and $J=\{7,8\}$. The first letter belongs to $I$ and the last to $J$. Every interior occurrence of a letter from $J$ must be a 7 immediately preceded by a 0. Exclude words ending in 07. A proper prefix of length one starts in $I$. A proper prefix of length at least two ending in $J$ ends in 07. Neither can equal a suffix.
+
+Let $R_j$ count words satisfying these conditions at length $j\ge2$ and put $R_1=2$ for the available final letters. Then $R_2=13$. At length $j\ge3$ either the second letter belongs to $I$, in which case one strips any of seven possible first letters, or the first two letters are 07 and one strips both. These operations are reversible. Hence $R_j=7R_{j-1}+R_{j-2}$, giving $93,664,4741,33851$ at lengths three through six. Maximizing $s^5(9-s)$ over $1\le s\le8$ gives $2\cdot7^5=33614$.
+\end{proof}
+
+At lengths two, three and four the maximum equals $B_n(q)$ over every alphabet~\cite{Blackburn,SMM}. At the next length the exception set is finite and nonempty.
+\begin{theorem}\label{th:five}
+$S_5(2)=2$, $S_5(3)=17$, and $S_5(q)=B_5(q)$ for all $q\ge4$. Thus $q_0(5)=4$.
+\end{theorem}
+The first two values are in the tables of~\cite{SMM}. Their accompanying data include an optimal ternary partition at length five with the same single-word split at level two, up to reversal~\cite{SMMdata}.
+
+\section{An exceptional alphabet for every large length}
+
+We use the construction of Fimmel et al.~\cite{Fimmel} in the form analyzed by Stanovnik, Mo\v{s}kon and Mraz~\cite[Construction~6]{SMM}. Partition $W_1=\Sigma$ into $L_1,R_1$. For each $i\ge2$, form
+\begin{equation}\label{eq:levels}
+ W_i=\bigcup_{j=1}^{i-1}L_jR_{i-j},
+ \qquad W_i=L_i\sqcup R_i\quad (i<n).
+\end{equation}
+The union over $j$ is disjoint. Every $W_n$ constructed in this way is non-overlapping, and every maximum code has such a representation~\cite[Theorems~3 and 6, Proposition~7]{SMM}. Reversing the words interchanges the two sides. Write $l_i,r_i,w_i$ for the respective cardinalities.
+
+Set $l_1=a$, $r_1=b$ and move a single word of $W_2=L_1R_1$ into $L_2$. Put every other two-letter word and every subsequent level on the right. Thus $r_1=b$, $r_2=ab-1$, and the resulting code has size $r_n$, where
+\[
+ r_j=ar_{j-1}+r_{j-2}\qquad (3\le j\le n).
+\]
+We use this same family for all lengths in the lower bound.
+
+\begin{proof}[Proof of the lower bound in Theorem~\ref{th:threshold}]
+Let $k=\floor{n/2}-2$, $d=\ceil{n/2}$, $q=nk+d$, $b=k+1$ and $a=q-b$. Then $(n-2)b-a=1$ and $a>n-2$ for $n\ge12$. The continuous maximum of $f(s)=s^{n-1}(q-s)$ occurs at $s_*=q(n-1)/n$, with $s_*-a=1-d/n\in(0,1/2]$. In fact $a$ is an integer maximizer. The identity $f'(s)=ns^{n-2}(s_*-s)$ shows that for equal distances from $s_*$ the loss to the right is at least the loss to the left. Since $a+1$ is at least as far from the peak as $a$, $f(a+1)\le f(a)$, and unimodality handles the other integers.
+
+Write $v_j=r_j/a^{j-1}$. Then $v_1=b$, $v_2=b-1/a$ and $v_j=v_{j-1}+v_{j-2}/a^2$. All terms are at least $b-1/a$. Summing the increments from $j=3$ to $n$ yields
+\[
+ v_n\ge b-\frac1a+\frac{(n-2)(b-1/a)}{a^2}
+     = b+\frac{1}{a^2}-\frac{n-2}{a^3}>b .
+\]
+It follows that $r_n>ba^{n-1}=B_n(q)$, so $q_0(n)>q$. Dividing this choice of $q$ by $n^2$ gives $\liminf_{n\to\infty} q_0(n)/n^2\ge1/2$.
+\end{proof}
+
+\section{A uniform loss for moderate partitions}
+
+Normalize each level cardinality in~\eqref{eq:levels} by dividing it by $q^i$ and retain the notation $l_i,r_i,w_i$ for the normalized quantities. Write $a=l_1$, $b=r_1$, $M=w_n$; thus $a+b=1$. Put
+\[
+ c=\frac{n-1}{n},\qquad m=\frac{1}{n-1},\qquad
+ \delta=\frac{1}{2n(n-1)},\qquad \beta(x)=x^{n-1}(1-x).
+\]
+If $\max(a,b)\ge (n-2)/(n-1)$, Chee's skew-partition theorem gives $M\le B_n(q)/q^n$~\cite[Theorem~III.2]{Chee}. For the remaining partitions, both $a$ and $b$ lie in $[m,c-2\delta]$. We call these partitions moderate; the following estimate also holds at the endpoints.
+
+Let $L(z)=\sum_{i=1}^{n-1} l_i z^i$, let $\rho>0$ satisfy $L(\rho)=1$, and put $t=1/\rho$. Chee's root identity~\cite[Lemma~II.5]{Chee} reads
+\begin{equation}\label{eq:root}
+ M=\beta(t)-D,\qquad
+ D=\sum_{\substack{1\le i,j<n\\i+j>n}} l_i r_j\rho^{i+j-n}.
+\end{equation}
+For a nonempty code $M>0$, so $0<t<1$ and $\rho>1$. The identity is valid in either orientation of the partition, using the corresponding $L$ and $\rho$.
+
+\begin{lemma}\label{lem:gap}
+If $q\ge2n$ and a moderate partition attains $S_n(q)$, then
+\[
+ \beta(c)-M\ \ge\ \frac{1}{96n(n-1)^2}.
+\]
+\end{lemma}
+\begin{proof}
+First, choose $s=\ceil{qc}$. Then $s/q\ge c$ and $1-s/q\ge1/(2n)$. Since $c^{n-1}\ge1/3$, the Blackburn code of this split has normalized size at least $1/(6n)$, so $M\ge1/(6n)$. We use $(1+1/j)^j\le e<3$ for positive integers $j$.
+
+Suppose the endpoint terms $ar_{n-1}+bl_{n-1}$ in $w_n$ account for at least $M/2$. Since $a+b=1$, one of $r_{n-1},l_{n-1}$ is at least $M/2$. Reverse the partition if needed to arrange $r_{n-1}\ge M/2$, then take the root in~\eqref{eq:root}. The terms with $j=n-1$ give
+\[
+ D\ge r_{n-1}\sum_{i=2}^{n-1} l_i\rho^{i-1}
+       = r_{n-1}(t-a).
+\]
+If $t\ge c-\delta$, then $t-a\ge\delta$ and $\beta(c)-M\ge M\delta/2$. If $t<c-\delta$, integrate $\beta'(x)=nx^{n-2}(c-x)$ from $c-\delta$ to $c$. Since $(c-\delta)^{n-2}\ge((n-2)/(n-1))^{n-2}\ge1/3$, monotonicity on $[0,c]$ gives $\beta(c)-M\ge n\delta^2/6$.
+
+Otherwise the terms $l_i r_j$ with $i+j=n$ and $i,j\ge2$ sum to at least $M/2$. For each such pair, the recurrence yields $w_{i+1}\ge m l_i$ and $w_{j+1}\ge m r_j$. If $l_{i+1}\ge ml_i/2$, select the tail term $l_{i+1}r_j$. Otherwise, if $r_{j+1}\ge mr_j/2$, select $l_i r_{j+1}$. In the remaining case $r_{i+1}\ge ml_i/2$ and $l_{j+1}\ge mr_j/2$, so select $l_{j+1}r_{i+1}$. In every case the selected term is at least $m^2 l_i r_j/4$. Each term of total degree $n+1$ can be selected at most twice, by decrementing its first or its second index. Each term of degree $n+2$ can be selected at most once, since the ordered pair $(j+1,i+1)$ determines $(i,j)$. The weights in $D$ are at least one, so $D\ge m^2 M/16$.
+
+The three lower bounds $M\delta/2$, $n\delta^2/6$ and $m^2M/16$ are each at least $1/(96n(n-1)^2)$.
+\end{proof}
+
+\begin{proof}[Proof of the upper bound in Theorem~\ref{th:threshold}]
+Assume $q\ge4n(n-1)$ and round $qc$ to a nearest integer $s$, which lies between 1 and $q-1$. Since $|\beta'(x)|\le n|x-c|$ on $[0,1]$,
+\[
+ \beta(c)-\beta(s/q)\le\frac{n}{8q^2}<
+ \frac{1}{96n(n-1)^2}.
+\]
+The Blackburn code with split $s$ thus beats every putative moderate maximum, by Lemma~\ref{lem:gap}. A maximum must have a skew partition, for which Chee's theorem gives the asserted equality.
+\end{proof}
+
+\section{The linear error term}
+
+\begin{proof}[Proof of the asymptotic formula in Theorem~\ref{th:threshold}]
+The alphabet sizes in the lower bound differ from $n^2/2$ by $O(n)$. We prove that any exceptional size $q\ge n^2/2$ also differs from $n^2/2$ by at most $O(n)$, with absolute constants throughout. Choose a maximum partition for such an alphabet. Since $S_n(q)>B_n(q)$, Chee's skew-partition theorem makes it moderate. Put
+\[
+ \Delta=\beta(c)-M,\qquad P=c^{n-2},\qquad
+ F=\sum_{i=2}^{n-2} l_i r_{n-i}.
+\]
+The root identity gives $0\le D\le\Delta$. Let $s$ be a nearest integer to $qc$. The rounding estimate of Section~3 gives $\Delta\le n/(8q^2)\le1/(2n^3)$.
+
+For $i+j=n$, $i,j\ge2$, use $w_{i+1}\ge b l_i$ and $w_{j+1}\ge a r_j$ in the interior argument of Lemma~\ref{lem:gap}. Select $l_{i+1}r_j$ if $l_{i+1}\ge b l_i/2$, and otherwise select $l_i r_{j+1}$ if $r_{j+1}\ge a r_j/2$. In the remaining case $l_{j+1}r_{i+1}\ge ab l_i r_j/4$. Each choice is at least $ab l_i r_j/4$, with multiplicity at most two. Hence $D\ge abF/8$. Moderateness gives $ab\ge m(1-m)\ge1/[2(n-1)]$, so $F\le16(n-1)\Delta=O(n^{-2})$.
+
+The endpoint terms sum to $M-F=a r_{n-1}+b l_{n-1}$. Reverse the partition if necessary so that $r_{n-1}\ge M-F$, and use the root $\rho$ of this orientation. Reversal preserves $M$ and $F$. The root equation gives $t\ge a$, and the terms with $j=n-1$ in~\eqref{eq:root} give $D\ge(M-F)(t-a)$.
+
+Write $u=n^2(c-t)$. For all large $n$ we have $|u|\le3$. Indeed, if $t<c-1/n$, monotonicity and integration of $\beta'(x)=n x^{n-2}(c-x)$ on $[c-1/n,c]$ give
+\[
+ \Delta\ge\beta(c)-\beta(t)\ge\frac{(1-2/n)^{n-2}}{2n}\ge\frac1{18n},
+\]
+since $(1+2/(n-2))^{n-2}\le e^2<9$. This contradicts $\Delta\le1/(2n^3)$. For $t\ge c-1/n$, every $x$ between $t$ and $c$ satisfies $x^{n-2}\ge1/9$. Integration on that interval gives $n(c-t)^2/18\le\Delta$, proving the claim.
+
+Both $t$ and $s/q$ lie within $3/n^2$ of $c$. For every $x$ between $c$ and either point, the mean value theorem on $[0,1]$ gives
+\[
+ |x^{n-2}-P|\le(n-2)|x-c|\le3/n .
+\]
+Since $P\ge c^{n-1}\ge1/3$, integration now gives the sharper estimates
+\begin{align}
+ \frac{n^3}{P}\bigl(\beta(c)-\beta(t)\bigr)
+ &=\frac{u^2}{2}+O(1/n),\label{eq:sharploss}\\
+ \frac{n^3\Delta}{P}
+ &\le \frac{n^4}{8q^2}\bigl(1+O(1/n)\bigr).\label{eq:sharpgrid}
+\end{align}
+The constants are uniform because $|u|\le3$ and $|s/q-c|\le1/(2q)$.
+
+Finally, $nM/P=c-n\Delta/P$ and $F=O(n^{-2})$ imply $n(M-F)/P=1+O(1/n)$. Moderateness gives $a\le c-1/[n(n-1)]$, so $n^2(t-a)\ge n/(n-1)-u$. Multiplying this inequality by $n(M-F)/P\ge0$ in the endpoint estimate yields $n^3 D/P\ge1-u-O(1/n)$. By~\eqref{eq:root} and~\eqref{eq:sharploss},
+\[
+ \frac{n^3\Delta}{P}\ge
+ \frac{u^2}{2}+1-u-O(1/n)
+ =\frac{1+(u-1)^2}{2}-O(1/n).
+\]
+Combining this inequality with~\eqref{eq:sharpgrid} gives $q^2\le (n^4/4)(1+O(1/n))$, hence $q\le n^2/2+O(n)$. All larger alphabets have a maximum Blackburn code, as required.
+\end{proof}
+
+\section{Exact optimization at length five}
+
+\begin{proof}[Proof of Theorem~\ref{th:five}]
+Return to integer counts and use reversal to assume $a=l_1\ge b=r_1>0$, $q=a+b$. Write $x=l_2$, $y=r_2=ab-x$, and $T=ay+bx=w_3$. With $u=l_3$ and $s=l_4$ the last two levels obey
+\[
+ w_4=a(T-u)+xy+bu,\qquad
+ w_5=a(w_4-s)+x(T-u)+uy+bs.
+\]
+At fixed $x,u$ the coefficient of $s$ is $b-a\le0$, so $s=0$ maximizes $w_5$. The remaining expression is affine in $u$. Its two endpoint values, at $u=0,T$ respectively, are
+\begin{align*}
+ F_0(x)&=a^4b+a^2(3b-a)x-(2a-b)x^2,\\
+ F_1(x)&=2a^3b^2-2ab(a-b)x-bx^2 .
+\end{align*}
+The maximum for the split is therefore $\max_{0\le x\le ab}\max(F_0(x),F_1(x))$, with $x$ integral.
+
+When $a\ge3b$, both polynomials are at most $a^4b$. When $b\le a\le3b$, both are at most $81q^5/1024$. For $F_1$ this follows by bounding it by $2a^3b^2$, whose maximum for real $a+b=q$ is $216q^5/3125$. For $F_0$, complete the square to obtain
+\[
+ F_0(x)\le\frac{a^4((a+b)^2+4b^2)}{4(2a-b)}.
+\]
+To compare this with $81q^5/1024$, multiply through by the positive denominators. The required nonnegative difference factors as
+\[
+\begin{split}
+ &81(2a-b)(a+b)^5-256a^4((a+b)^2+4b^2) \\
+ &\quad=(3b-a)
+ \bigl(94a^5+65a^4b+260a^3b^2-30a^2b^3-90ab^4-27b^5\bigr).
+\end{split}
+\]
+The three subtracted terms have sum at most $147a^3b^2$.
+
+If $[3q/4,4q/5]$ contains an integer $s$, then $s^4(q-s)\ge81q^5/1024$ by monotonicity up to $4q/5$. This condition holds whenever $q=4h+5j$ with $h,j\ge0$, by taking $s=3h+4j$. It covers $q=4,5,8,9,10$ and every $q\ge12$ (use $12,13,14,15$ and add fours). For $q=6,11$ use $s=5,9$ respectively; direct substitution gives the same lower bound. The remaining small splits are displayed below. Each $F_0$ maximum is obtained from the integer or integers nearest its vertex in $[0,ab]$, and $F_1$ is maximized at zero.
+\[
+\begin{array}{c|c|r|r}
+q&a&\max F_0&\max F_1\\\hline
+2&1&2&2\\
+3&2&17&16\\
+7&4&1088&1152\\
+7&5&1268&1000\\
+7&6&1296&432
+\end{array}
+\]
+For $q=7$ the maximum is $6^4=B_5(7)$. Every endpoint partition used in the calculation is feasible in~\eqref{eq:levels}, which gives equality in the two exceptional cases as well.
+\end{proof}
+
+\paragraph{Formal verification.}
+The accompanying Lean~4 development defines the length-six witness as a finite set of words and proves its cardinality, the proper-prefix exclusion and the strict comparison with every Blackburn split. It certifies the length-five optimization over all integer partition profiles. For the general bounds it verifies the interior diagonal estimate, the scalar gap and rounding estimates, and the construction, non-overlap, cardinality and strict improvement of the perturbed word family at every $n\ge12$. The passage from arbitrary maximum codes to partition profiles, the root identity and the skew-partition theorem enter the general argument through the cited structural results. Section~4 supplies the asymptotic argument.
+
+\paragraph{Use of generative AI.}
+OpenAI Codex was used to develop the arguments, write the Lean formalization and draft the manuscript.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{Blackburn}
+S.~R. Blackburn, Non-overlapping codes, \emph{IEEE Trans. Inform. Theory} \textbf{61} (2015), 4890--4894. \href{https://doi.org/10.1109/TIT.2015.2456634}{doi:10.1109/TIT.2015.2456634}.
+\bibitem{Chee}
+Y.~M. Chee, A proof of Blackburn's conjecture on non-overlapping codes, 2026. \href{https://arxiv.org/abs/2611.28776v2}{arXiv:2611.28776v2}.
+\bibitem{Fimmel}
+E.~Fimmel, C.~J. Michel, F.~Pirot, J.-S. Sereni and L.~Str\"ungmann, \href{https://ajc.maths.uq.edu.au/pdf/86/ajc_v86_p233.pdf}{Diletter and triletter comma-free codes over finite alphabets}, \emph{Australas. J. Combin.} \textbf{86} (2023), 233--270.
+\bibitem{SMM}
+L.~Stanovnik, M.~Mo\v{s}kon and M.~Mraz, In search of maximum non-overlapping codes, \emph{Des. Codes Cryptogr.} \textbf{92} (2024), 1299--1326. \href{https://doi.org/10.1007/s10623-023-01344-z}{doi:10.1007/s10623-023-01344-z}.
+\bibitem{SMMdata}
+L.~Stanovnik, M.~Mo\v{s}kon and M.~Mraz, \href{https://github.com/magdevska/nono-codes}{Computational data for \emph{In search of maximum non-overlapping codes}}, dataset accompanying~\cite{SMM}.
+\end{thebibliography}
+\end{document}
