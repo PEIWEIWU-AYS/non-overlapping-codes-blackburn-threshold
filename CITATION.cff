@@ -24,3 +24,17 @@ keywords:
   - "extremal combinatorics"
   - "coding theory"
   - "Lean 4"
+version: "1.0.0"
+date-released: "2026-11-28"
+preferred-citation:
+  type: unpublished
+  title: "A quadratic alphabet threshold for non-overlapping codes"
+  year: 2026
+  url: "https://peiweiwu-ays.github.io/non-overlapping-codes-blackburn-threshold/"
+  authors:
+    - family-names: Wu
+      given-names: Peiwei
+      affiliation: "Shandong Medical and Pharmaceutical University (formerly Binzhou Medical University)"
+    - family-names: Peng
+      given-names: Qian
+      affiliation: "The University of Melbourne"

@@ -272,7 +272,7 @@ def IsCode {D : Type} (n : ℕ) (C : Finset (List D)) : Prop :=
 private theorem map_back {D E : Type} (e : D≃E) (w : List D) :
     (w.map e).map e.symm = w := by simp [List.map_map]
 
-private theorem move_alphabet {D E : Type} [DecidableEq E] (e : D≃E)
+theorem move_alphabet {D E : Type} [DecidableEq E] (e : D≃E)
     (C : Finset (List D)) {n : ℕ} (hc : IsCode n C) :
     let S := C.image (List.map e)
     S.card = C.card ∧ IsCode n S := by

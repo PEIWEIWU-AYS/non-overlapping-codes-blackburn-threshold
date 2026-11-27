@@ -2,7 +2,7 @@
   "title": "A quadratic alphabet threshold for non-overlapping codes",
   "upload_type": "publication",
   "publication_type": "preprint",
-  "description": "<p>For length-n non-overlapping (cross-bifix-free) codes, let q₀(n) be the least alphabet size beyond which a Blackburn split is always maximum. We prove q₀(n) = n²/2 + O(n), with q₀(n) ≤ 4n(n−1) for n ≥ 3. A family of non-overlapping codes yields exceptional alphabets for every n ≥ 12. A length-six code on nine symbols has 33,851 words, while the best Blackburn split has 33,614, disproving Conjecture 1 of Stanovnik, Moškon and Mraz. We also determine the maximum for all alphabets at length five. The archive includes the research preprint, its LaTeX source, formal proofs in Lean 4, and a verification report.</p>",
+  "description": "<p>Let q₀(n) be the least integer such that every alphabet of size q ≥ q₀(n) admits a partition I, J for which Iⁿ⁻¹J is a maximum non-overlapping code of length n. Chee proved that q₀(n) exists. We prove q₀(n) = n²/2 + O(n) and the finite bound q₀(n) ≤ 4n(n−1). The upper bound compares a uniform loss in the real partition relaxation with the cost of rounding a single alphabet split. For the lower bound, moving one two-letter word between parts produces an infinite family of exceptions. At length six over nine symbols the maximum is 33,872, exceeding the best Blackburn split by 258 and disproving a conjecture of Stanovnik, Moškon and Mraz. We also determine the maximum for every alphabet size at length five.</p><p>The preprint and Lean 4 sources include end-to-end proofs for finite word sets, build instructions and an axiom audit. <a href=\"https://peiweiwu-ays.github.io/non-overlapping-codes-blackburn-threshold/manuscript.pdf\">Read the paper (PDF)</a>.</p>",
   "creators": [
     {
       "name": "Wu, Peiwei",
@@ -35,6 +35,13 @@
       "identifier": "10.48550/arXiv.2611.28776",
       "relation": "references",
       "scheme": "doi"
+    },
+    {
+      "identifier": "https://peiweiwu-ays.github.io/non-overlapping-codes-blackburn-threshold/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
     }
-  ]
+  ],
+  "publication_date": "2026-11-28",
+  "version": "1.0.0"
 }

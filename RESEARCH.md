@@ -27,6 +27,8 @@ Stanovnik、Moškon 和 Mraz 的猜想 1 预言每个参数对都存在具有特
 
 已有分层算法能生成这一类码。原作者仓库甚至在 $q=3,n=5$ 的数值例中使用了相同的“第二层只取一个词”的形状。这里的贡献是用这个既有构造族反证猜想并推导阈值的量级，不主张首创这一构造族。[作者的数值输出](https://github.com/magdevska/nono-codes/blob/d71b2a10c764bdd86b3a2754bf819c20927a3d18/consistency/compute_sqn-serial.txt)
 
+把可用的内部标记改成 07 和 17，并禁止码字以这两对之一结尾，递推变为 $R_1=2, R_2=12, R_j=7R_{j-1}+2R_{j-2}$，得到 33,872 个词。对所有码做整数分层上界，并消去最后两层，得到相同上界。因此 $S_6(9)=33{,}872$，比最好的 Blackburn 分割多 258。[最优码与上界](TwoMark.lean)
+
 ## 上界
 
 采用 Chee 的命题 II.2 和式 (5)–(7)。每个最大码由左右分层给出，第 $i$ 层的大小分为 $l_i,r_i$，并有 $l_1+r_1=q$ 和 $w_i=l_i+r_i=\sum_{j=1}^{i-1}l_jr_{i-j}$。反转码字可以交换左右。把第 $i$ 层的大小除以 $q^i$，以下量均已归一化。写 $a=l_1,b=r_1$，$a+b=1$，$M=\sum_{i+j=n}l_i r_j$ 是码的归一化大小。两支的一级大小都小于等于 $(n-2)/(n-1)$ 时，称为适中情形。其余情形已由 Chee 的定理 III.2 控制在 $B_n(q)$ 以内。[分层表示、根恒等式及倾斜情形](https://arxiv.org/html/2611.28776v2)
@@ -80,6 +82,6 @@ $a\ge3b$ 时，两者至多为 $a^4b$。$b\le a\le3b$ 时，两者至多为 $81q
 
 ## 形式化范围
 
-[WordLower.lean](WordLower.lean) 对每个 $n\ge12$ 构造一个实际的有限词集，证明它没有重叠、计算其大小，并严格比较所有整数分割。[SixCount.lean](SixCount.lean) 给出九个字母、六位码字反例的精确基数。[LengthFive.lean](LengthFive.lean) 解决长度五的整数分层优化问题。根恒等式和有限上界的分层推导见 [RootIdentity.lean](RootIdentity.lean)。定理的正式名称、编译环境和文件哈希见[本版验证记录](VERIFICATION.txt)。完整数学论证见[英文论文](manuscript.pdf)。
+[WordLower.lean](WordLower.lean) 对每个 $n\ge12$ 构造一个实际的有限词集，证明它没有重叠、计算其大小，并严格比较所有整数分割。[SixCount.lean](SixCount.lean) 给出九个字母、六位码字反例的精确基数。[LengthFive.lean](LengthFive.lean) 解决长度五的整数分层优化问题。根恒等式和有限上界的分层推导见 [RootIdentity.lean](RootIdentity.lean)。定理的正式名称、编译环境和文件哈希见[本版验证记录](VERIFICATION.txt)。[ThresholdBounds.lean](ThresholdBounds.lean) 的极限定理从实际有限词集定义出发，已包含一般码到整数递推的支配证明与倾斜情形。[英文论文](manuscript.pdf) 给出书面推导。
 
 从本目录运行 `lake exe cache get`、`lake build` 与 `lake env lean -DwarningAsError=true Nonoverlap.lean` 即可复核。查重范围见[先行工作对照](PRIORITY.md)。

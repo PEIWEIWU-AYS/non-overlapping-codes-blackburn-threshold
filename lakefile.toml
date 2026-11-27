@@ -9,4 +9,4 @@ rev = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
 
 [[lean_lib]]
 name = "Nonoverlap"
-roots = ["ExplicitSix", "SixCount", "LengthFive", "Interior", "Analytic", "Lower", "Upper", "LayerData", "WordLower", "UpperBridge", "RootIdentity", "Nonoverlap"]
+roots = ["ExplicitSix", "SixCount", "LengthFive", "Interior", "Analytic", "Lower", "Upper", "LayerData", "WordLower", "UpperBridge", "RootIdentity", "Skew", "SharpProfile", "SharpAnalysis", "IntegerLayers", "SharpThreshold", "Representation", "BlackburnWords", "AlphabetThreshold", "ThresholdBounds", "ExactFiveWords", "ExactSix", "TwoMark", "Nonoverlap"]

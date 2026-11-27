@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Let $q_0(n)$ be the least integer such that every alphabet of size $q\ge q_0(n)$ admits a partition $I\sqcup J$ for which $I^{n-1}J$ is a maximum non-overlapping code of length $n$. Chee proved that $q_0(n)$ exists. We prove $q_0(n)=n^2/2+O(n)$ and the finite bound $q_0(n)\le4n(n-1)$. The upper bound compares a uniform loss in the real partition relaxation with the cost of rounding a single alphabet split. For the lower bound, moving one two-letter word between parts produces an infinite family of exceptions. At length six over nine symbols this construction gives $33{,}851$ words, exceeding the best partition of the form $I^5J$ by 237 and disproving a conjecture of Stanovnik, Mo\v{s}kon and Mraz. We also determine the maximum for every alphabet size at length five.
+Let $q_0(n)$ be the least integer such that every alphabet of size $q\ge q_0(n)$ admits a partition $I\sqcup J$ for which $I^{n-1}J$ is a maximum non-overlapping code of length $n$. Chee proved that $q_0(n)$ exists. We prove $q_0(n)=n^2/2+O(n)$ and the finite bound $q_0(n)\le4n(n-1)$. The upper bound compares a uniform loss in the real partition relaxation with the cost of rounding a single alphabet split. For the lower bound, moving one two-letter word between parts produces an infinite family of exceptions. This construction disproves a conjecture of Stanovnik, Mo\v{s}kon and Mraz at length six over nine symbols. A two-word modification attains the exact maximum $33{,}872$, exceeding the best $I^5J$ code by 258. We also determine the maximum for every alphabet size at length five.
 \end{abstract}
 
 \section{The alphabet threshold}
@@ -34,18 +34,36 @@ For all $n\ge3$, $q_0(n)\le 4n(n-1)$. For every $n\ge12$,
 \[
  q_0(n)>n\bigl(\floor{n/2}-2\bigr)+\ceil{n/2}.
 \]
-As $n\to\infty$, one has $q_0(n)=n^2/2+O(n)$.
+For $n\ge564$, $q_0(n)\le\floor{n^2/2+143n}+1$. In particular, $q_0(n)=n^2/2+O(n)$.
 \end{theorem}
 
 Stanovnik, Mo\v{s}kon and Mraz conjectured that some maximum partition code has $R_i=\varnothing$ for all $i>1+n/(q+1)$, in the notation of~\eqref{eq:levels}. For $q\ge n$ this forces every right part above the first level to be empty and gives $S_n(q)=B_n(q)$~\cite[Conjecture~1 and Remark~3]{SMM}. An example of length six already contradicts that prediction.
 
 \begin{proposition}\label{p:six}
-There is a non-overlapping code of length six over nine symbols with $33{,}851$ words. In particular, $S_6(9)>B_6(9)=33{,}614$.
+One has $S_6(9)=33{,}872$ and $B_6(9)=33{,}614$.
 \end{proposition}
 \begin{proof}
 Take $I=\{0,\ldots,6\}$ and $J=\{7,8\}$. The first letter belongs to $I$ and the last to $J$. Every interior occurrence of a letter from $J$ must be a 7 immediately preceded by a 0. Exclude words ending in 07. A proper prefix of length one starts in $I$. A proper prefix of length at least two ending in $J$ ends in 07. Neither can equal a suffix.
 
-Let $R_j$ count words satisfying these conditions at length $j\ge2$ and put $R_1=2$ for the available final letters. Then $R_2=13$. At length $j\ge3$ either the second letter belongs to $I$, in which case one strips any of seven possible first letters, or the first two letters are 07 and one strips both. These operations are reversible. Hence $R_j=7R_{j-1}+R_{j-2}$, giving $93,664,4741,33851$ at lengths three through six. Maximizing $s^5(9-s)$ over $1\le s\le8$ gives $2\cdot7^5=33614$.
+Let $R_j$ count words satisfying these conditions at length $j\ge2$ and put $R_1=2$ for the available final letters. Then $R_2=13$. At length $j\ge3$ either the second letter belongs to $I$, in which case one strips any of seven possible first letters, or the first two letters are 07 and one strips both. These operations are reversible. Hence $R_j=7R_{j-1}+R_{j-2}$, giving $93,664,4741,33851$ at lengths three through six. Maximizing $s^5(9-s)$ over $1\le s\le8$ gives $2\cdot7^5=33614$. This one-mark construction already contradicts Conjecture~1 of~\cite{SMM}.
+
+For the maximum, allow an interior 7 immediately after either 0 or 1, and exclude both final pairs 07 and 17. A proper prefix ending in $J$ now ends in one of those two pairs, which again proves non-overlap. With two marked pairs the recurrence becomes $R_1=2$, $R_2=12$ and $R_j=7R_{j-1}+2R_{j-2}$, giving $88,640,4656,33872$.
+
+For the matching upper bound use the partition counts in~\eqref{eq:levels}. By reversal let $a=l_1\ge b=r_1$, where $b=9-a$. Write $x=l_2$, $y=ab-x$, $z=l_3$, $v=l_4$. At level five all words can be placed on the right, since the coefficient of $l_5$ in $w_6$ is $b-a\le0$. Thus the objective is
+\begin{align*}
+ w_3&=ay+bx, & w_4&=a(w_3-z)+xy+bz,\\
+ w_5&=a(w_4-v)+x(w_3-z)+zy+bv, &
+ w_6&=aw_5+x(w_4-v)+z(w_3-z)+vy .
+\end{align*}
+For fixed $x,z$ this is affine in $v$. The table gives the larger endpoint value maximized over the integers $0\le x\le ab$, $0\le z\le w_3$. The last two rows specify optimizing levels, so the finite calculation is reproducible by direct substitution.
+\[
+\begin{array}{c|rrrr}
+ a&5&6&7&8\\\hline
+ \max w_6&26627&29889&33872&32768\\
+ x&17&9&2&0\\
+ (z,v)&(0,0)&(0,0)&(0,0)&(0,0)
+\end{array}
+\]
 \end{proof}
 
 At lengths two, three and four the maximum equals $B_n(q)$ over every alphabet~\cite{Blackburn,SMM}. At the next length the exception set is finite and nonempty.
@@ -140,7 +158,7 @@ For $i+j=n$, $i,j\ge2$, use $w_{i+1}\ge b l_i$ and $w_{j+1}\ge a r_j$ in the int
 
 The endpoint terms sum to $M-F=a r_{n-1}+b l_{n-1}$. Reverse the partition if necessary so that $r_{n-1}\ge M-F$, and use the root $\rho$ of this orientation. Reversal preserves $M$ and $F$. The root equation gives $t\ge a$, and the terms with $j=n-1$ in~\eqref{eq:root} give $D\ge(M-F)(t-a)$.
 
-Write $u=n^2(c-t)$. For all large $n$ we have $|u|\le3$. Indeed, if $t<c-1/n$, monotonicity and integration of $\beta'(x)=n x^{n-2}(c-x)$ on $[c-1/n,c]$ give
+Write $u=n^2(c-t)$. For $n\ge4$ we have $|u|\le3$. Indeed, if $t<c-1/n$, monotonicity and integration of $\beta'(x)=n x^{n-2}(c-x)$ on $[c-1/n,c]$ give
 \[
  \Delta\ge\beta(c)-\beta(t)\ge\frac{(1-2/n)^{n-2}}{2n}\ge\frac1{18n},
 \]
@@ -150,22 +168,30 @@ Both $t$ and $s/q$ lie within $3/n^2$ of $c$. For every $x$ between $c$ and eith
 \[
  |x^{n-2}-P|\le(n-2)|x-c|\le3/n .
 \]
-Since $P\ge c^{n-1}\ge1/3$, integration now gives the sharper estimates
+Since $P\ge c^{n-1}\ge1/3$ and $|u|\le3$, integration gives
 \begin{align}
  \frac{n^3}{P}\bigl(\beta(c)-\beta(t)\bigr)
- &=\frac{u^2}{2}+O(1/n),\label{eq:sharploss}\\
+ &\ge\left(1-\frac9n\right)\frac{u^2}{2},\label{eq:sharploss}\\
  \frac{n^3\Delta}{P}
- &\le \frac{n^4}{8q^2}\bigl(1+O(1/n)\bigr).\label{eq:sharpgrid}
+ &\le \frac{n^4}{8q^2}\left(1+\frac3n\right).\label{eq:sharpgrid}
 \end{align}
-The constants are uniform because $|u|\le3$ and $|s/q-c|\le1/(2q)$.
+In the grid estimate the integration interval has length at most $1/(2q)\le1/n^2$, giving $|x^{n-2}-P|\le1/n$ there.
 
-Finally, $nM/P=c-n\Delta/P$ and $F=O(n^{-2})$ imply $n(M-F)/P=1+O(1/n)$. Moderateness gives $a\le c-1/[n(n-1)]$, so $n^2(t-a)\ge n/(n-1)-u$. Multiplying this inequality by $n(M-F)/P\ge0$ in the endpoint estimate yields $n^3 D/P\ge1-u-O(1/n)$. By~\eqref{eq:root} and~\eqref{eq:sharploss},
+Set $w=n(M-F)/P$. The identities $1-c=1/n$ and $nM/P=c-n\Delta/P$ give
 \[
- \frac{n^3\Delta}{P}\ge
- \frac{u^2}{2}+1-u-O(1/n)
- =\frac{1+(u-1)^2}{2}-O(1/n).
+ 1-w=\frac1n+\frac{n(\Delta+F)}P\le\frac{25}{n},
 \]
-Combining this inequality with~\eqref{eq:sharpgrid} gives $q^2\le (n^4/4)(1+O(1/n))$, hence $q\le n^2/2+O(n)$. All larger alphabets have a maximum Blackburn code, as required.
+since $\Delta+F\le16n\Delta$ and $\Delta\le1/(2n^3)$. In particular $0\le w\le1$. Moderateness gives $a\le c-1/[n(n-1)]$, so $n^2(t-a)\ge n/(n-1)-u\ge1-u$. The endpoint estimate now gives $n^3D/P\ge w(1-u)\ge 1-u-100/n$, since $|1-u|\le4$. Adding~\eqref{eq:sharploss} yields
+\[
+ \frac{n^3\Delta}{P}\ge\frac{u^2}{2}+1-u-\frac{141}{n}
+ =\frac{1+(u-1)^2}{2}-\frac{141}{n}.
+\]
+If $n\ge564$, comparison with~\eqref{eq:sharpgrid} gives
+\[
+ \frac{2q}{n^2}\le\sqrt{1+\frac{285}{n-282}}
+             \le 1+\frac{285}{2(n-282)}\le 1+\frac{285}{n}.
+\]
+In particular, $q\le n^2/2+143n$. All larger alphabets admit a maximum Blackburn code, proving the finite bound and the asymptotic formula.
 \end{proof}
 
 \section{Exact optimization at length five}
@@ -212,7 +238,9 @@ For $q=7$ the maximum is $6^4=B_5(7)$. Every endpoint partition used in the calc
 \end{proof}
 
 \paragraph{Formal verification.}
-The accompanying Lean~4 development defines the length-six witness as a finite set of words and proves its cardinality, the proper-prefix exclusion and the strict comparison with every Blackburn split. It certifies the length-five optimization over all integer partition profiles. For the general bounds it verifies the interior diagonal estimate, the scalar gap and rounding estimates, and the construction, non-overlap, cardinality and strict improvement of the perturbed word family at every $n\ge12$. The passage from arbitrary maximum codes to partition profiles, the root identity and the skew-partition theorem enter the general argument through the cited structural results. Section~4 supplies the asymptotic argument.
+The accompanying Lean~4 development defines a code as a finite set of words, constructs the Blackburn codes and the exceptional family of Section~2, and verifies the bounds and limiting ratio for the least threshold $q_0(n)$. It also certifies the exact value $S_6(9)$ and the maximum at length five for every alphabet size.
+
+For the upper bound the formal proof constructs integer layer counts that dominate each actual code $C$. Begin with each codeword split into single letters. Label a block left if it is a prefix of a word of $C$ and right otherwise. While at least two blocks remain, the first is left and the last is right by non-overlap. Merge an adjacent left--right pair and repeat. This parses every codeword. Counting possible pairs bounds the number of parsed words of length $i$ by the convolution of the shorter left and right counts. Keep the left counts and increase the right counts successively until equality holds in the recurrence. Induction then bounds $|C|$ by the final convolution. This argument permits multiple parses of a word. Lean applies the verified root identity, skew estimate and moderate-partition bounds to the resulting integer profile.
 
 \paragraph{Use of generative AI.}
 OpenAI Codex was used to develop the arguments, write the Lean formalization and draft the manuscript.
