@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Please cite the preprint when referring to the mathematical results."
+title: "A quadratic alphabet threshold for non-overlapping codes"
+type: software
+authors:
+  - family-names: Wu
+    given-names: Peiwei
+    affiliation: "Shandong Medical and Pharmaceutical University (formerly Binzhou Medical University)"
+  - family-names: Peng
+    given-names: Qian
+    affiliation: "The University of Melbourne"
+contact:
+  - family-names: Peng
+    given-names: Qian
+    affiliation: "The University of Melbourne"
+repository-code: "https://github.com/PEIWEIWU-AYS/non-overlapping-codes-blackburn-threshold"
+keywords:
+  - "non-overlapping codes"
+  - "cross-bifix-free codes"
+  - "strong comma-free codes"
+  - "alphabet threshold"
+  - "Blackburn conjecture"
+  - "Stanovnik–Moškon–Mraz conjecture"
+  - "extremal combinatorics"
+  - "coding theory"
+  - "Lean 4"

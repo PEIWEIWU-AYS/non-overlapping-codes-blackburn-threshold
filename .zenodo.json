@@ -1,0 +1,40 @@
+{
+  "title": "A quadratic alphabet threshold for non-overlapping codes",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "<p>For non-overlapping (cross-bifix-free) codes of length n, the least alphabet threshold beyond which Blackburn’s construction is always optimal grows quadratically in n. We give explicit upper and lower bounds, determine the threshold at length five, and disprove Conjecture 1 of Stanovnik, Moškon and Mraz. On nine letters our length-six code has 33,851 words; the best Blackburn split has 33,614. This release contains the preprint, the Lean 4 project and verification instructions.</p>",
+  "creators": [
+    {
+      "name": "Wu, Peiwei",
+      "affiliation": "Shandong Medical and Pharmaceutical University (formerly Binzhou Medical University)"
+    },
+    {
+      "name": "Peng, Qian",
+      "affiliation": "The University of Melbourne"
+    }
+  ],
+  "language": "eng",
+  "keywords": [
+    "non-overlapping codes",
+    "cross-bifix-free codes",
+    "strong comma-free codes",
+    "alphabet threshold",
+    "Blackburn conjecture",
+    "Stanovnik–Moškon–Mraz conjecture",
+    "extremal combinatorics",
+    "coding theory",
+    "Lean 4"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1007/s10623-023-01344-z",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.48550/arXiv.2611.28776",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ]
+}
