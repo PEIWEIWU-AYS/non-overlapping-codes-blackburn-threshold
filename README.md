@@ -1,5 +1,7 @@
 # A quadratic alphabet threshold for non-overlapping codes
 
+[Version DOI 10.5281/zenodo.24590036](https://doi.org/10.5281/zenodo.24590036) · [All versions](https://doi.org/10.5281/zenodo.24590035) · [Paper and abstract](https://peiweiwu-ays.github.io/non-overlapping-codes-blackburn-threshold/)
+
 **Peiwei Wu** · Shandong Medical and Pharmaceutical University (formerly Binzhou Medical University)  
 **Qian Peng** · The University of Melbourne · Corresponding author
 
