@@ -5,7 +5,7 @@ namespace Nonoverlap.Six
 
 /-- Upper envelope after optimizing the two final splits at a fixed choice
 of the first three levels. -/
-private def envelope (a b x y u v : ℕ) : ℕ :=
+def envelope (a b x y u v : ℕ) : ℕ :=
   let d := max a b
   max (d*a+x) (d*b+y) * (a*v+x*y+b*u) + d*(x*v+u*y)+u*v
 
@@ -33,7 +33,7 @@ private lemma finite_envelope {a b x y u v : ℕ} (h1 : a+b=9)
   have hv : a*y+b*x-u=v := by omega
   simpa only [hv,decide_eq_true_eq] using ent
 
-private lemma eliminate_last {a b x y u v k z p s : ℕ}
+lemma eliminate_last {a b x y u v k z p s : ℕ}
     (h4 : k+z=a*v+x*y+b*u) (h5 : p+s=a*z+x*v+u*y+b*k) :
     a*s+x*z+u*v+k*y+p*b ≤ envelope a b x y u v := by
   let d := max a b

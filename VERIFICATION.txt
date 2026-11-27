@@ -1,6 +1,6 @@
 Local proof audit | 28 November 2026 (Melbourne)
 Lean (version 4.19.0, arm64-apple-darwin23.6.0, commit 6caaee842e94, Release)
-Clean build: 24 project modules, pinned external dependencies.
+Clean build: 28 project modules, pinned external dependencies.
 Commands: lake build; lake env lean -DwarningAsError=true Nonoverlap.lean
 
 'SixPattern.finite_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -26,33 +26,46 @@ Commands: lake build; lake env lean -DwarningAsError=true Nonoverlap.lean
 'NonoverlapFive.threshold_five' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Nonoverlap.Six.nine_letter_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
 'Nonoverlap.TwoMark.exact_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapThreshold.explicit_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapSix.quaternary_word_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nonoverlap.Six.small_six_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nonoverlap.Six.threshold_six' depends on axioms: [propext, Classical.choice, Quot.sound]
 'NonoverlapFive.exceptional_alphabets' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapThreshold.finite_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapThreshold.linear_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NonoverlapFive.five_word_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nonoverlap.Six.six_word_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Nonoverlap.Six.six_exceptional_alphabets' depends on axioms: [propext, Classical.choice, Quot.sound]
 
 SHA-256 of build inputs
 a928de576b501d4e904d9b4ae7c2651068cffab61fe2d481562b22fa488ccc50  AlphabetThreshold.lean
 48401acde617ff31a9e7a9011c75cdf00e38cce2083552aac89d804f14b1c8c1  Analytic.lean
 8abf98e589ad977ccd55a5b7d0f75b4145d8aa5d5b7e13473f113202344d445d  BlackburnWords.lean
-77933a9a4b30c4413c344eeaa0e61d121c52556caa6df221a6952dd40a326d6a  ExactFiveWords.lean
-9be7a5ca05c3cc76178b9242420b16bf980d0655053482f9403910b2f77de914  ExactSix.lean
+f307c6ee57ed336113b2834c201a2041df58ecac93f93554b025d76def163367  ExactFiveWords.lean
+1a19149da314d5872b6ec401ea00653b1bad809c08b86c2ad163c2ead522b850  ExactSix.lean
 c5d8a4472e14e751d82f56781172c6bd523925c932d8024f27bc1e2a93944dd1  ExplicitSix.lean
 603251faa6a6f5f9c88ba25b0fff7d880eb427e9c6916fbb23d73d7c55e65fa8  IntegerLayers.lean
 9bd0a03bbbbecaab6523ba247ee1a46b3c4d10253ffe8fde4e2b9bf3be1b2910  Interior.lean
 33e5e9b17a12f9d88171eed8d41d7de19bfc466ef484bda2ddbea611d8891eb1  LayerData.lean
 bf6dc1f0dc55942d165fbb7c558c50e290fa94b52cc88fe0dd721c5e50dc65e5  LengthFive.lean
 eb65ac4bdfba5c5b31f6808e1ef41148cf3acb8f3c95e28d8cd41ce60766999d  Lower.lean
-bce6f53d50f5f0ebac158117c0a717a63dd5e13867ea0524d86aecc55b1727c3  Nonoverlap.lean
+00fbe8f1546b189c1da03e1362924b3e9ac47ea33ab1b7006219d11053de8a89  LowerExact.lean
+07ef9a5cfc76ae96a967371a65a90795eb1a065a60fe11c25766b1c1b590e67c  Nonoverlap.lean
 ebeadf07a1a89c5ccfced7fb7bf8e5ad352faa4bfb44a892385598abf887bbdf  Representation.lean
 b7df05d05b6b87198eb55ec4e4359d7efb19177a144bec0c0c3c9e26fec82da1  RootIdentity.lean
 fe86fb2d989651b04d25b815de1aa07cc60080b3b8d75980407fd169ae8c2273  SharpAnalysis.lean
 44692e80668ed95403c87ef94c3bb18d2910328ea4723a6fa1442d8d0542eebd  SharpProfile.lean
 0585e2c5facc578963d590d3b0fc6dcafdc6e0d475fa1ed902fd5b72e7b9f208  SharpThreshold.lean
 7b3cbe716233d6246e6fcf8895f7f922f152007c626b5d988f37e35cbb7b5e71  SixCount.lean
+b91f944d7e1ff851e3360a3cdf3ecdb5232766c85651fb5d453b7b4366132f6b  SixSummary.lean
 dd2e5c4d27190146e154f7f79e5687b10134f2c11e7e0fce02c6157181129be6  Skew.lean
+b0e3844638e452ca13d6db358a6a349a3c185ba03c67323c5a7c6680f67cceb5  SmallSixWords.lean
 fb8ecfcda3012d471b5a9f1863f14330c7dadfa1aa43b5feb53fe1ff5338ad5d  ThresholdBounds.lean
+4376bdec39912cea476b94885eabb6a94c7134b87958523b09be1787274edbf0  ThresholdSix.lean
 8c7a751c00e8acb70666dd02659c563d47f46377a8682205ba451a28bcbbef43  TwoMark.lean
 4150e550013043e2b54445575ac618068a2315bb7617b494b1dfb1fe3c7544f4  Upper.lean
 90d90dc1532d0d8ff6b7ac583a7cf8c7fe29a44eb76944e650c962dddc4758d9  UpperBridge.lean
-c394fe9444bf6392176e7a68a13c46bf38be463459ab92a1a54373b4844466ca  WordLower.lean
+03d898429a7dcc89e224b197f10756771303ac5714cd794788d00e06ed54b56f  WordLower.lean
 9ec7a46fdfd568131a698b857ed2d45e71acfcf78ce86a7cd8946a6afcc0fb4d  lake-manifest.json
-ed69cd764159a6a92af8e866acfd3d58bac2e561a33e74e87bc11532fa942dd4  lakefile.toml
+9b841204bae9aa6006b76c61a3df23b5cc8452390d8ed4907870f8b3a41841ab  lakefile.toml
 55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea  lean-toolchain

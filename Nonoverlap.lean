@@ -21,6 +21,10 @@ import ThresholdBounds
 import ExactFiveWords
 import ExactSix
 import TwoMark
+import LowerExact
+import SmallSixWords
+import ThresholdSix
+import SixSummary
 
 #print axioms SixPattern.finite_counterexample
 #print axioms NonoverlapFive.five_partition_maximum
@@ -43,4 +47,13 @@ import TwoMark
 #print axioms NonoverlapFive.threshold_five
 #print axioms Nonoverlap.Six.nine_letter_upper
 #print axioms Nonoverlap.TwoMark.exact_maximum
+#print axioms NonoverlapThreshold.explicit_lower
+#print axioms NonoverlapSix.quaternary_word_witness
+#print axioms Nonoverlap.Six.small_six_upper
+#print axioms Nonoverlap.Six.threshold_six
 #print axioms NonoverlapFive.exceptional_alphabets
+#print axioms NonoverlapThreshold.finite_upper
+#print axioms NonoverlapThreshold.linear_remainder
+#print axioms NonoverlapFive.five_word_maximum
+#print axioms Nonoverlap.Six.six_word_maximum
+#print axioms Nonoverlap.Six.six_exceptional_alphabets

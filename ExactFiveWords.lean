@@ -7,7 +7,7 @@ open Nonoverlap.Representation
 open scoped BigOperators
 namespace NonoverlapFive
 
-private theorem code_of_checks {q n : ℕ} (C : Finset (List (Fin q)))
+theorem code_of_checks {q n : ℕ} (C : Finset (List (Fin q)))
     (len : ∀ w ∈ C, w.length=n)
     (verify : ∀ w ∈ C, ∀ z ∈ C, ∀ k ∈ Finset.range (n-1),
       w.take (k+1) ≠ z.drop (n-(k+1))) : IsCode n C := by

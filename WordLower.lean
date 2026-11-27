@@ -293,10 +293,11 @@ theorem move_alphabet {D E : Type} [DecidableEq E] (e : D≃E)
         (by simpa using hl) (by simpa only [List.map_append] using mem_pre _ h1)
         (by simpa only [List.map_append] using mem_pre _ h2)
 
-/-- At every length n≥12 some alphabet of size q≥(n²-4n)/2 has a concrete
+set_option maxHeartbeats 1000000 in
+/-- The explicit alphabet q = n(⌊n/2⌋−2)+⌈n/2⌉ admits a concrete
 non-overlapping code strictly larger than every Blackburn split. -/
-theorem quadratic_word_counterexamples (n : ℕ) (hn : 12 ≤ n) :
-    ∃ q : ℕ, ∃ C : Finset (List (Fin q)), n^2 ≤ 2*q+4*n ∧ IsCode n C ∧
+theorem explicit_word_counterexamples (n : ℕ) (hn : 12 ≤ n) :
+    ∃ q : ℕ, ∃ C : Finset (List (Fin q)), q = n*(n/2-2)+(n+1)/2 ∧ n^2 ≤ 2*q+4*n ∧ IsCode n C ∧
       ∀ s ≤ q, s^(n-1)*(q-s) < C.card := by
   let k := n/2-2
   let e := n%2
@@ -327,7 +328,13 @@ theorem quadratic_word_counterexamples (n : ℕ) (hn : 12 ≤ n) :
     rw [hN]
     dsimp [q,a,b,j]
     rcases he01 with he'|he' <;> rw [he'] <;> nlinarith
-  refine ⟨q,C,hqbound,hC,?_⟩
+  have hqexact : q = n*(n/2-2)+(n+1)/2 := by
+    have hr : (n+1)/2 = k+2+e := by dsimp [k,e]; omega
+    change a+b = n*k+(n+1)/2
+    rw [hr,hN]
+    dsimp [a,b]
+    ring
+  refine ⟨q,C,hqexact,hqbound,hC,?_⟩
   intro s hs
   have hleft : (j+2+2)*a ≤ (j+2+1)*q := by
     dsimp [q,a,b,j]
@@ -343,6 +350,14 @@ theorem quadratic_word_counterexamples (n : ℕ) (hn : 12 ≤ n) :
   rw [hcard,hreal,show n-1=j+3 by omega]
   apply lt_of_le_of_lt _ hwin
   simpa [q,Nat.add_sub_cancel_left,Nat.mul_comm] using hg
+
+/-- At every length n≥12 some alphabet of size q≥(n²-4n)/2 has a concrete
+non-overlapping code strictly larger than every Blackburn split. -/
+theorem quadratic_word_counterexamples (n : ℕ) (hn : 12 ≤ n) :
+    ∃ q : ℕ, ∃ C : Finset (List (Fin q)), n^2 ≤ 2*q+4*n ∧ IsCode n C ∧
+      ∀ s ≤ q, s^(n-1)*(q-s) < C.card := by
+  obtain ⟨q,C,_,bound,valid,strict⟩ := explicit_word_counterexamples n hn
+  exact ⟨q,C,bound,valid,strict⟩
 
 #print axioms quadratic_word_counterexamples
 end NonoverlapThreshold.WordLower

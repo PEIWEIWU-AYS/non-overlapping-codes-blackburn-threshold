@@ -24,10 +24,10 @@ keywords:
   - "extremal combinatorics"
   - "coding theory"
   - "Lean 4"
-version: "1.0.0"
+version: "1.1.0"
 date-released: "2026-11-28"
 preferred-citation:
-  doi: "10.5281/zenodo.24590036"
+  doi: "10.5281/zenodo.24590035"
   type: unpublished
   title: "A quadratic alphabet threshold for non-overlapping codes"
   year: 2026

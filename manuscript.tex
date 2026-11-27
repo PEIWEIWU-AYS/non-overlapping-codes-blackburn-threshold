@@ -18,7 +18,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Let $q_0(n)$ be the least integer such that every alphabet of size $q\ge q_0(n)$ admits a partition $I\sqcup J$ for which $I^{n-1}J$ is a maximum non-overlapping code of length $n$. Chee proved that $q_0(n)$ exists. We prove $q_0(n)=n^2/2+O(n)$ and the finite bound $q_0(n)\le4n(n-1)$. The upper bound compares a uniform loss in the real partition relaxation with the cost of rounding a single alphabet split. For the lower bound, moving one two-letter word between parts produces an infinite family of exceptions. This construction disproves a conjecture of Stanovnik, Mo\v{s}kon and Mraz at length six over nine symbols. A two-word modification attains the exact maximum $33{,}872$, exceeding the best $I^5J$ code by 258. We also determine the maximum for every alphabet size at length five.
+Let $q_0(n)$ be the least integer such that every alphabet of size $q\ge q_0(n)$ admits a partition $I\sqcup J$ for which $I^{n-1}J$ is a maximum non-overlapping code of length $n$. Chee proved that $q_0(n)$ exists. We prove $q_0(n)=n^2/2+O(n)$ and the finite bound $q_0(n)\le4n(n-1)$. The upper bound compares a uniform loss in the real partition relaxation with the cost of rounding a single alphabet split. Moving one two-letter word between parts produces an infinite family of exceptions and disproves a conjecture of Stanovnik, Mo\v{s}kon and Mraz. We determine the maximum for every alphabet size at lengths five and six. Their thresholds are $4$ and $10$, respectively. At length six the exceptional alphabet sizes are $2,3,4,9$. On nine symbols the maximum is $33{,}872$, exceeding the best $I^5J$ code by 258.
 \end{abstract}
 
 \section{The alphabet threshold}
@@ -39,38 +39,23 @@ For $n\ge564$, $q_0(n)\le\floor{n^2/2+143n}+1$. In particular, $q_0(n)=n^2/2+O(n
 
 Stanovnik, Mo\v{s}kon and Mraz conjectured that some maximum partition code has $R_i=\varnothing$ for all $i>1+n/(q+1)$, in the notation of~\eqref{eq:levels}. For $q\ge n$ this forces every right part above the first level to be empty and gives $S_n(q)=B_n(q)$~\cite[Conjecture~1 and Remark~3]{SMM}. An example of length six already contradicts that prediction.
 
-\begin{proposition}\label{p:six}
-One has $S_6(9)=33{,}872$ and $B_6(9)=33{,}614$.
-\end{proposition}
-\begin{proof}
-Take $I=\{0,\ldots,6\}$ and $J=\{7,8\}$. The first letter belongs to $I$ and the last to $J$. Every interior occurrence of a letter from $J$ must be a 7 immediately preceded by a 0. Exclude words ending in 07. A proper prefix of length one starts in $I$. A proper prefix of length at least two ending in $J$ ends in 07. Neither can equal a suffix.
-
-Let $R_j$ count words satisfying these conditions at length $j\ge2$ and put $R_1=2$ for the available final letters. Then $R_2=13$. At length $j\ge3$ either the second letter belongs to $I$, in which case one strips any of seven possible first letters, or the first two letters are 07 and one strips both. These operations are reversible. Hence $R_j=7R_{j-1}+R_{j-2}$, giving $93,664,4741,33851$ at lengths three through six. Maximizing $s^5(9-s)$ over $1\le s\le8$ gives $2\cdot7^5=33614$. This one-mark construction already contradicts Conjecture~1 of~\cite{SMM}.
-
-For the maximum, allow an interior 7 immediately after either 0 or 1, and exclude both final pairs 07 and 17. A proper prefix ending in $J$ now ends in one of those two pairs, which again proves non-overlap. With two marked pairs the recurrence becomes $R_1=2$, $R_2=12$ and $R_j=7R_{j-1}+2R_{j-2}$, giving $88,640,4656,33872$.
-
-For the matching upper bound use the partition counts in~\eqref{eq:levels}. By reversal let $a=l_1\ge b=r_1$, where $b=9-a$. Write $x=l_2$, $y=ab-x$, $z=l_3$, $v=l_4$. At level five all words can be placed on the right, since the coefficient of $l_5$ in $w_6$ is $b-a\le0$. Thus the objective is
-\begin{align*}
- w_3&=ay+bx, & w_4&=a(w_3-z)+xy+bz,\\
- w_5&=a(w_4-v)+x(w_3-z)+zy+bv, &
- w_6&=aw_5+x(w_4-v)+z(w_3-z)+vy .
-\end{align*}
-For fixed $x,z$ this is affine in $v$. The table gives the larger endpoint value maximized over the integers $0\le x\le ab$, $0\le z\le w_3$. The last two rows specify optimizing levels, so the finite calculation is reproducible by direct substitution.
-\[
-\begin{array}{c|rrrr}
- a&5&6&7&8\\\hline
- \max w_6&26627&29889&33872&32768\\
- x&17&9&2&0\\
- (z,v)&(0,0)&(0,0)&(0,0)&(0,0)
-\end{array}
-\]
-\end{proof}
-
-At lengths two, three and four the maximum equals $B_n(q)$ over every alphabet~\cite{Blackburn,SMM}. At the next length the exception set is finite and nonempty.
+At lengths two, three and four the maximum equals $B_n(q)$ over every alphabet~\cite{Blackburn,SMM}. The next two lengths admit complete classifications.
 \begin{theorem}\label{th:five}
 $S_5(2)=2$, $S_5(3)=17$, and $S_5(q)=B_5(q)$ for all $q\ge4$. Thus $q_0(5)=4$.
 \end{theorem}
-The first two values are in the tables of~\cite{SMM}. Their accompanying data include an optimal ternary partition at length five with the same single-word split at level two, up to reversal~\cite{SMMdata}.
+\begin{theorem}\label{th:six}
+For $q\ge2$, one has $S_6(q)=B_6(q)$ except at four alphabet sizes, whose maxima are given below.
+\[
+\begin{array}{c|rrrr}
+q&2&3&4&9\\\hline
+S_6(q)&3&41&251&33{,}872\\
+B_6(q)&1&32&243&33{,}614
+\end{array}
+\]
+In particular, $q_0(6)=10$.
+\end{theorem}
+
+Table~1 of~\cite{SMM} already gives the maxima for $2\le q\le6$ at both lengths, including the first three exceptional values in Theorem~\ref{th:six}. The accompanying data give an optimal ternary partition at length five with a single-word split at level two, up to reversal~\cite{SMMdata}. Theorems~\ref{th:five} and~\ref{th:six} extend these tables to every alphabet size.
 
 \section{An exceptional alphabet for every large length}
 
@@ -237,8 +222,46 @@ q&a&\max F_0&\max F_1\\\hline
 For $q=7$ the maximum is $6^4=B_5(7)$. Every endpoint partition used in the calculation is feasible in~\eqref{eq:levels}, which gives equality in the two exceptional cases as well.
 \end{proof}
 
+\section{Exact optimization at length six}
+\begin{proof}[Proof of Theorem~\ref{th:six}]
+We first realize the exceptional sizes. For $q=2$ use the words $001011$, $001101$ and $001111$. Their one-letter prefixes and suffixes differ. At lengths two through five, each prefix starts with $00$, which occurs only at the start of each word. For $q=3,4$ use the single marked pair of Section~2 with $a=q-1$ and $b=1$. Then $r_2=a-1$ and $r_j=ar_{j-1}+r_{j-2}$, giving $r_6=41,251$, respectively.
+
+For $q=9$, let $I=\{0,\ldots,6\}$ and $J=\{7,8\}$. Take all words starting in $I$ and ending in $J$ such that every interior letter from $J$ is a 7 immediately preceded by 0 or 1. Exclude the two endings 07 and 17. Any proper prefix ending in $J$ ends with one of these pairs, so it cannot equal a suffix. The first two counts are $r_1=2$ and $r_2=12$. Removing either one initial letter from $I$ or one of the two marked pairs gives $r_j=7r_{j-1}+2r_{j-2}$. Thus $r_6=33{,}872$. With just the pair 07 the recurrence in Section~2 gives $33{,}851$, which already exceeds $B_6(9)$ and refutes Conjecture~1 of~\cite{SMM}.
+
+For the upper bound it suffices by Theorem~\ref{th:threshold} to treat $2\le q<120$. Reverse the partition if necessary to ensure $a=l_1\ge b=r_1>0$. Put $x=l_2$, $y=ab-x$, $T=ay+bx=w_3$ and $u=l_3$. Then
+\[
+ w_4=a(T-u)+xy+bu.
+\]
+At level five we may place all words on the right, since the coefficient of $l_5$ in $w_6$ is $b-a\le0$. For a fixed $u$, a word assigned to $R_4$ has coefficient $a^2+x$ in $w_6$, whereas one assigned to $L_4$ has coefficient $ab+y$. Hence with $D=\max(a^2+x,ab+y)$ the largest objective for these three initial splits is
+\begin{align*}
+ D w_4+a\bigl(x(T-u)+uy\bigr)+u(T-u)
+    &= A+Ku-u^2,\\
+ A &= D(aT+xy)+axT,\\
+ K &= D(b-a)+a(y-x)+T.
+\end{align*}
+For nonnegative integral $u$ this is at most $A+\floor{\max(K,0)^2/4}$. The following integer calculation evaluates that upper bound at every remaining $q,a,x$ and records just the strict excesses over $B_6(q)$.
+\begin{verbatim}
+exceptions = {}
+for q in range(2, 120):
+    B = max(s**5 * (q-s) for s in range(1, q))
+    U = 0
+    for a in range((q+1)//2, q):
+        b = q-a
+        for x in range(a*b+1):
+            y = a*b-x
+            T = a*y+b*x
+            D = max(a*a+x, a*b+y)
+            A = D*(a*T+x*y)+a*x*T
+            K = D*(b-a)+a*(y-x)+T
+            U = max(U, A+max(K,0)**2//4)
+    if U > B:
+        exceptions[q] = U
+\end{verbatim}
+The four entries are $(2,3),(3,41),(4,251),(9,33872)$. The constructions above attain all four bounds. For every other $q$ a Blackburn split attains the upper bound.
+\end{proof}
+
 \paragraph{Formal verification.}
-The accompanying Lean~4 development defines a code as a finite set of words, constructs the Blackburn codes and the exceptional family of Section~2, and verifies the bounds and limiting ratio for the least threshold $q_0(n)$. It also certifies the exact value $S_6(9)$ and the maximum at length five for every alphabet size.
+The accompanying Lean~4 development defines a code as a finite set of words, constructs the Blackburn codes and the exceptional family of Section~2, and verifies the bounds and limiting ratio for the least threshold $q_0(n)$. It also certifies the maximum at lengths five and six for every alphabet size. For the finite calculation at length six, it bounds the quadratic envelope on intervals of $x$, subdividing any interval until its bound is at most the claimed maximum.
 
 For the upper bound the formal proof constructs integer layer counts that dominate each actual code $C$. Begin with each codeword split into single letters. Label a block left if it is a prefix of a word of $C$ and right otherwise. While at least two blocks remain, the first is left and the last is right by non-overlap. Merge an adjacent left--right pair and repeat. This parses every codeword. Counting possible pairs bounds the number of parsed words of length $i$ by the convolution of the shorter left and right counts. Keep the left counts and increase the right counts successively until equality holds in the recurrence. Induction then bounds $|C|$ by the final convolution. This argument permits multiple parses of a word. Lean applies the verified root identity, skew estimate and moderate-partition bounds to the resulting integer profile.
 
